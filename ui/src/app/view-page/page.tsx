@@ -9,7 +9,6 @@ const ViewPage = () => {
   const _puckInitialData = useAppSelector(
     (state) => state.formReducer.puckInitialData
   );
-  // const _puckInitialData = JSON.parse(localStorage?.getItem("puck-data") || "");
 
   return <Render config={config} data={_puckInitialData} />;
 };

@@ -12,8 +12,6 @@ export const Editor = () => {
   const dispatch = useAppDispatch();
 
   const save = (data: any) => {
-    console.log(data);
-    localStorage.setItem("puck-data", JSON.stringify(data));
     dispatch(setPuckInitialData(data));
   };
 
