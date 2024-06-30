@@ -1,3 +1,4 @@
+import "./globals.css";
 import { Editor } from "./puck-editor/editor";
 
 export default function Home() {
