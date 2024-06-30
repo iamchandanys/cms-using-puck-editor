@@ -6,14 +6,14 @@ import { Puck } from "@measured/puck";
 
 import { setPuckInitialData } from "@/lib/slices/formSlice";
 import React from "react";
-import config from "../../../puck-config";
+import { config, initialData } from "../../../puck-config";
 
 export const Editor = () => {
-  const initialData = {};
   const dispatch = useAppDispatch();
 
   const save = (data: any) => {
     console.log(data);
+    localStorage.setItem("puck-data", JSON.stringify(data));
     dispatch(setPuckInitialData(data));
   };
 
