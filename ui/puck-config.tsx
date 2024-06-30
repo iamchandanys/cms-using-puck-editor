@@ -1,7 +1,7 @@
+import { FeaturesListCard } from "@/app/puck-editor/components/features-list-card";
+import { InsuranceTypes } from "@/app/puck-editor/components/insurance-types";
+import { ViWithHeading } from "@/app/puck-editor/components/vi-with-heading";
 import type { Config } from "@measured/puck";
-import { ViWithHeading } from "./components/vi-with-heading";
-import { InsuranceTypes } from "./components/insurance-types";
-import { FeaturesListCard } from "./components/features-list-card";
 
 type Components = {
   ViWithHeadingBlock: {};
