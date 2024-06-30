@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type FormState = {
   myHost: string;
+  puckInitialData: any;
 };
 
 const initialState = {
   myHost: "",
+  puckInitialData: {},
 } as FormState;
 
 /**
@@ -28,9 +30,12 @@ export const form = createSlice({
     setHost: (state, action: PayloadAction<string>) => {
       state.myHost = action.payload;
     },
+    setPuckInitialData: (state, action: PayloadAction<any>) => {
+      state.puckInitialData = action.payload;
+    },
   },
 });
 
-export const { setHost, reset } = form.actions;
+export const { setHost, reset, setPuckInitialData } = form.actions;
 
 export default form.reducer;

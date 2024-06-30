@@ -16,7 +16,11 @@ export default function Home() {
   return (
     <div>
       <Editor></Editor>
-      {/* <input name="host" onChange={(e) => dispatch(setHost(e.target.value))} value={myHost} /> */}
+      <input
+        name="host"
+        onChange={(e) => dispatch(setHost(e.target.value))}
+        value={myHost}
+      />
     </div>
   );
 }
