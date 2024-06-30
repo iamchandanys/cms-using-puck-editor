@@ -18,9 +18,12 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
+      - name: Increase file descriptor limit
+        run: ulimit -n 4096
+
+      - name: npm ci, build, and test
         run: |
-          npm install
+          npm ci
           npm run build --if-present
           npm run test --if-present
         working-directory: ./ui
@@ -29,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./ui  # Adjust this path to upload the built artifacts correctly
+          path: ./ui
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,7 +48,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-          path: ./ui  # Adjust this path to download the built artifacts correctly
+          path: ./ui
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -60,4 +63,4 @@ jobs:
         with:
           app-name: 'cms-by-puck-editor-v3'
           slot-name: 'Production'
-          package: ./ui  # Adjust this path to point to the correct package location
+          package: ./ui
