@@ -1,22 +1,34 @@
 "use client";
 
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import "@measured/puck/puck.css";
 import { Puck } from "@measured/puck";
 
 import { setPuckInitialData } from "@/lib/slices/formSlice";
-import React from "react";
 import { config, initialData } from "../../../puck-config";
 
 export const Editor = () => {
+  const _puckInitialData = useAppSelector(
+    (state) => state.formReducer.puckInitialData
+  );
   const dispatch = useAppDispatch();
 
   const save = (data: any) => {
     dispatch(setPuckInitialData(data));
   };
 
+  const onChange = (data: any) => {
+    dispatch(setPuckInitialData(data));
+  };
+
   const handleViewPage = () => {
-    window.open("/view-page", "_blank");
+    if (
+      _puckInitialData !== null &&
+      typeof _puckInitialData === "object" &&
+      Object.keys(_puckInitialData).length > 0
+    )
+      window.open("/cms-using-puck-editor/view-page", "_blank");
+    else window.alert("Publish before viewing page.");
   };
 
   const overrides = {
@@ -35,13 +47,16 @@ export const Editor = () => {
   };
 
   return (
-    <div>
+    <>
       <Puck
         config={config}
         data={initialData}
         onPublish={save}
         overrides={overrides}
+        onChange={(data: any) => {
+          onChange(data);
+        }}
       ></Puck>
-    </div>
+    </>
   );
 };
