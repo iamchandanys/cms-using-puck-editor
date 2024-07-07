@@ -3,14 +3,14 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import "@measured/puck/puck.css";
 import { Puck } from "@measured/puck";
+// import { config } from "../components/puck-config";
+import { PuckConfig } from "puck-editor-components";
 
 import { setPuckInitialData } from "@/lib/slices/formSlice";
-import { config, initialData } from "../../../puck-config";
 
 export const Editor = () => {
-  const _puckInitialData = useAppSelector(
-    (state) => state.formReducer.puckInitialData
-  );
+  const initialData = {};
+
   const dispatch = useAppDispatch();
 
   const save = (data: any) => {
@@ -21,14 +21,20 @@ export const Editor = () => {
     dispatch(setPuckInitialData(data));
   };
 
+  const _puckInitialData = useAppSelector(
+    (state) => state.formReducer.puckInitialData
+  );
+
   const handleViewPage = () => {
     if (
       _puckInitialData !== null &&
       typeof _puckInitialData === "object" &&
       Object.keys(_puckInitialData).length > 0
-    )
+    ) {
       window.open("/cms-using-puck-editor/view-page", "_blank");
-    else window.alert("Publish before viewing page.");
+    } else {
+      window.alert("Publish before viewing page.");
+    }
   };
 
   const overrides = {
@@ -49,7 +55,7 @@ export const Editor = () => {
   return (
     <>
       <Puck
-        config={config}
+        config={PuckConfig}
         data={initialData}
         onPublish={save}
         overrides={overrides}
