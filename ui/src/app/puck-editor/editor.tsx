@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import "@measured/puck/puck.css";
 import { Puck } from "@measured/puck";
 // import { config } from "../components/puck-config";
-import { PuckConfig } from "puck-editor-components";
 
 import { setPuckInitialData } from "@/lib/slices/formSlice";
+import { PuckConfig } from "puck-editor-components";
 
 export const Editor = () => {
   const initialData = {};
@@ -55,7 +55,7 @@ export const Editor = () => {
   return (
     <>
       <Puck
-        config={PuckConfig}
+        config={PuckConfig as any}
         data={initialData}
         onPublish={save}
         overrides={overrides}
