@@ -3,8 +3,6 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import "@measured/puck/puck.css";
 import { Puck } from "@measured/puck";
-// import { config } from "../components/puck-config";
-
 import { setPuckInitialData } from "@/lib/slices/formSlice";
 import { PuckConfig } from "puck-editor-components";
 
